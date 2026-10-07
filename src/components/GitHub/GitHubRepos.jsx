@@ -1,20 +1,35 @@
-﻿import { useGitHub } from "../../hooks/useGitHub";
+import { useState } from "react";
+import { useGitHub } from "../../hooks/useGitHub";
 import { githubUsername } from "../../data/socialLinks";
 import { Star, GitFork, ExternalLink } from "lucide-react";
 import { GithubIcon } from "../icons";
 
 const LANG_COLORS = {
   Python: "#3572A5",
+  Solidity: "#aa6746",
   JavaScript: "#f1e05a",
   TypeScript: "#3178c6",
   Java: "#b07219",
   "C++": "#f34b7d",
   HTML: "#e34c26",
   CSS: "#563d7c",
-  Jupyter: "#DA5B0B",
+  "Jupyter Notebook": "#DA5B0B",
 };
 
+function getRepoCategory(repo) {
+  const str = `${repo.name} ${repo.description || ""} ${(repo.topics || []).join(" ")} ${repo.language || ""}`.toLowerCase();
+  if (repo.language === "Solidity" || str.includes("solidity") || str.includes("blockchain") || str.includes("polygon") || str.includes("defi") || str.includes("perigee") || str.includes("facechain") || str.includes("web3") || str.includes("smart-contract")) {
+    return "WEB3";
+  }
+  if (str.includes("llm") || str.includes("transformer") || str.includes("multivariate") || str.includes("seismic") || str.includes("learning") || str.includes("pytorch") || str.includes("classifier") || str.includes("anomaly")) {
+    return "AI / ML";
+  }
+  return "FULL STACK";
+}
+
 function RepoCard({ repo }) {
+  const category = getRepoCategory(repo);
+
   return (
     <a
       href={repo.html_url}
@@ -40,7 +55,7 @@ function RepoCard({ repo }) {
         e.currentTarget.style.transform = "none";
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
         <p
           style={{
             fontFamily: "JetBrains Mono, monospace",
@@ -53,7 +68,37 @@ function RepoCard({ repo }) {
         >
           {repo.name}
         </p>
-        <ExternalLink size={12} style={{ color: "#333", flexShrink: 0 }} />
+        <span
+          style={{
+            fontFamily: "JetBrains Mono, monospace",
+            fontSize: 7.5,
+            letterSpacing: "0.1em",
+            padding: "2px 6px",
+            borderRadius: 10,
+            background:
+              category === "WEB3"
+                ? "rgba(192,132,252,0.1)"
+                : category === "AI / ML"
+                ? "rgba(74,158,255,0.1)"
+                : "rgba(74,222,128,0.1)",
+            color:
+              category === "WEB3"
+                ? "#c084fc"
+                : category === "AI / ML"
+                ? "#4a9eff"
+                : "#4ade80",
+            border: `1px solid ${
+              category === "WEB3"
+                ? "rgba(192,132,252,0.2)"
+                : category === "AI / ML"
+                ? "rgba(74,158,255,0.2)"
+                : "rgba(74,222,128,0.2)"
+            }`,
+            flexShrink: 0,
+          }}
+        >
+          {category}
+        </span>
       </div>
 
       {repo.description && (
@@ -129,7 +174,7 @@ function RepoCard({ repo }) {
           style={{
             fontFamily: "JetBrains Mono, monospace",
             fontSize: 9,
-            color: "#333",
+            color: "#444",
             marginLeft: "auto",
           }}
         >
@@ -145,6 +190,7 @@ function RepoCard({ repo }) {
 
 export default function GitHubRepos() {
   const { repos, profile, loading, error } = useGitHub();
+  const [filter, setFilter] = useState("ALL");
 
   if (!githubUsername) {
     return (
@@ -205,6 +251,11 @@ export default function GitHubRepos() {
     );
   }
 
+  const filteredRepos = repos.filter((r) => {
+    if (filter === "ALL") return true;
+    return getRepoCategory(r) === filter;
+  });
+
   return (
     <div>
       {profile && (
@@ -213,7 +264,7 @@ export default function GitHubRepos() {
             display: "flex",
             alignItems: "center",
             gap: 16,
-            marginBottom: 32,
+            marginBottom: 24,
             padding: "16px 20px",
             border: "1px solid #1a1a1a",
             borderRadius: 8,
@@ -247,7 +298,7 @@ export default function GitHubRepos() {
                 margin: 0,
               }}
             >
-              {profile.public_repos} public repositories
+              {profile.public_repos} public repositories on GitHub
             </p>
           </div>
           <a
@@ -279,10 +330,34 @@ export default function GitHubRepos() {
             }}
           >
             <GithubIcon size={12} />
-            VIEW PROFILE â†—
+            VIEW PROFILE ↗
           </a>
         </div>
       )}
+
+      {/* Repository category filter */}
+      <div style={{ display: "flex", gap: 6, marginBottom: 20, flexWrap: "wrap" }}>
+        {["ALL", "AI / ML", "WEB3", "FULL STACK"].map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setFilter(cat)}
+            style={{
+              fontFamily: "JetBrains Mono, monospace",
+              fontSize: 9.5,
+              letterSpacing: "0.1em",
+              padding: "5px 12px",
+              borderRadius: 4,
+              border: "1px solid",
+              borderColor: filter === cat ? "#444" : "#1a1a1a",
+              background: filter === cat ? "#1a1a1a" : "transparent",
+              color: filter === cat ? "#f0f0f0" : "#666",
+              cursor: "pointer",
+            }}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
 
       <div
         style={{
@@ -291,12 +366,10 @@ export default function GitHubRepos() {
           gap: 12,
         }}
       >
-        {repos.slice(0, 12).map((repo) => (
+        {filteredRepos.map((repo) => (
           <RepoCard key={repo.id} repo={repo} />
         ))}
       </div>
     </div>
   );
 }
-
-

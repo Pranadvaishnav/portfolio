@@ -51,7 +51,7 @@ export default function AboutPage() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Current Learning Path
+                Current Technical Journey
               </h2>
               <p style={{ color: "#555", fontSize: 13, lineHeight: 1.6, margin: 0 }}>
                 A map of how different areas connect — not a strict timeline.

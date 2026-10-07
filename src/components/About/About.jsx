@@ -37,24 +37,13 @@ export default function About() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <p style={{ color: "#777", fontSize: 14, lineHeight: 1.7, margin: 0 }}>
-            I'm a Computer Science student at Chandigarh University interested in the
-            intersection of machine learning, software engineering, and scientific
-            computing. I'm drawn to problems that require understanding systems
-            deeply rather than just applying abstractions.
+            I'm a Computer Science student at Chandigarh University interested in understanding how intelligent and decentralized systems work, and building software that connects them. I'm drawn to technical challenges that require understanding systems deeply from first principles rather than merely consuming high-level abstractions.
           </p>
           <p style={{ color: "#777", fontSize: 14, lineHeight: 1.7, margin: 0 }}>
-            My work spans AI and ML (entity resolution, anomaly detection, LLMs),
-            full-stack development (React/Node.js applications), graph analytics,
-            and scientific data processing. I try to engage with each domain from
-            first principles — which is why projects like building an LLM from
-            scratch matter to me.
+            My work spans three interconnected pillars: <strong>AI & Machine Learning</strong> (implementing transformer LLMs from scratch, variational autoencoders, and entity resolution systems), <strong>Web3 & Decentralized Protocols</strong> (authoring Solidity smart contracts, perpetual futures exchange mechanics, and cryptographic verification on Polygon), and <strong>Full-Stack Software</strong> (responsive Next.js/React terminals, Express APIs, and PostgreSQL architectures).
           </p>
           <p style={{ color: "#777", fontSize: 14, lineHeight: 1.7, margin: 0 }}>
-            I'm also genuinely curious about research — particularly applying ML
-            to physics and scientific datasets, where the structure of the problem
-            is very different from conventional business ML. These interests are
-            early-stage explorations, not completed projects, and I'm clear about
-            that distinction.
+            I'm also curious about technical research — investigating the intersection of machine learning and physical datasets (such as collider physics and seismic signal processing), alongside the convergence of AI agents and on-chain protocol architectures.
           </p>
         </div>
 
@@ -217,10 +206,11 @@ export default function About() {
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {[
-              { label: "Artificial Intelligence", note: "ML, LLMs, deep learning" },
-              { label: "Software Engineering", note: "full-stack, systems" },
-              { label: "Research / Scientific ML", note: "physics, signals, data" },
-              { label: "Algorithms", note: "DSA, complexity, problem-solving" },
+              { label: "Artificial Intelligence", note: "ML, LLMs, representations" },
+              { label: "Web3 & Smart Contracts", note: "Solidity, EVM, DeFi protocols" },
+              { label: "Full-Stack Software", note: "Next.js, Node, PostgreSQL, APIs" },
+              { label: "Research / Scientific ML", note: "physics, signals, collider data" },
+              { label: "Algorithms & Systems", note: "DSA, complexity, distributed logic" },
             ].map((item) => (
               <div
                 key={item.label}

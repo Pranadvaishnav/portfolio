@@ -5,7 +5,7 @@ const items = [
     sub: "Chandigarh University",
   },
   { label: "GRADUATION", value: "2028", sub: "Expected May" },
-  { label: "FOCUS", value: "AI / ML / Full Stack", sub: null },
+  { label: "FOCUS", value: "AI · Web3 · Full Stack", sub: "Three Pillars" },
   { label: "CURRENTLY", value: "Building + Learning", sub: "+ Researching" },
 ];
 

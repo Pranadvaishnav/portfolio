@@ -8,41 +8,52 @@
 export const projects = [
   {
     id: "perigee-protocol",
-    title: "Perigee Protocol — Perpetual DEX",
-    shortTitle: "Perigee Protocol",
+    title: "Decentralized Perpetual Exchange",
+    shortTitle: "Perpetual DEX",
     category: "WEB3",
     categoryLabel: "Web3 / DeFi",
     featured: true,
-    status: "completed",
-    tagline: "High-performance decentralized perpetual futures protocol with 20x leverage.",
+    status: "in development",
+    network: "Local Anvil / Testnet Simulation",
+    tagline: "Simplified perpetual trading protocol inspired by GMX/dYdX architectures.",
     description:
-      "A decentralized perpetual futures protocol built with Solidity 0.8.24, Foundry, and a Next.js 14 high-density trading terminal. Traders execute leveraged Long and Short perpetual positions on ETH/USD and BTC/USD with up to 20x leverage, peer-to-pool liquidity, guaranteed execution, automated liquidation keepers, and dynamic funding rate mechanisms.",
+      "A simplified perpetual trading protocol and high-density trading terminal inspired by decentralized perpetual exchange architectures such as GMX and dYdX. The project explores wallet connection, multi-token collateral vaults, long and short position lifecycle management with up to 20x leverage, real-time unrealized PnL, dynamic funding rates, and automated liquidation keepers.",
     problem:
-      "Centralized trading platforms expose users to custodial risk and counterparty failure, while decentralized perpetuals often suffer from poor capital efficiency, oracle front-running, or opaque liquidation mechanics.",
+      "Centralized trading platforms expose users to custodial risk and counterparty failure, while decentralized perpetuals require careful capital efficiency, reliable oracle staleness validation, and guaranteed solvency under extreme market volatility.",
     approach:
-      "Architected a modular smart contract suite adhering strictly to the Checks-Effects-Interactions (CEI) security model. Implemented Vault.sol for LP collateral and solvency guards, PositionManager for margin and PnL, LiquidationEngine for underwater margin calls, and OracleManager with price staleness checks. Built a 58-test Foundry test suite (100% pass rate) with invariant and property-based fuzzing.",
+      "Architected a modular smart contract suite in Solidity 0.8.24 adhering strictly to the Checks-Effects-Interactions (CEI) security pattern. Built a shared collateral Vault with reserved liquidity solvency guards, dynamic skew-based funding accumulators, a keeper liquidation engine, and a 58-test Foundry test suite featuring invariant and property-based fuzzing.",
     pipeline: [
-      { id: "vault", label: "VAULT COLLATERAL", description: "Shared liquidity pool (MockUSDC) with PLP share accounting & solvency guard" },
-      { id: "oracle", label: "ORACLE MANAGER", description: "Chainlink-compatible price feeds with staleness & zero-price checks" },
-      { id: "position", label: "POSITION MANAGER", description: "Margin accounting, 1x-20x leverage slider, and Long/Short entry" },
-      { id: "funding", label: "FUNDING ENGINE", description: "Dynamic skew-based funding rate tracking & index accumulation" },
-      { id: "liquidation", label: "LIQUIDATION KEEPER", description: "Public keeper engine liquidating positions below 0.5% margin ratio" },
-      { id: "terminal", label: "PRO TRADING UI", description: "Next.js 14 terminal with candlestick charts, Viem execution & oracle simulator" }
+      { id: "wallet", label: "WALLET", description: "Browser wallet connection via Viem with zero-friction local accounts" },
+      { id: "collateral", label: "COLLATERAL", description: "Deposit stable collateral (MockUSDC) into shared liquidity Vault" },
+      { id: "open", label: "OPEN POSITION", description: "Specify market (ETH/USD, BTC/USD), size, and collateral allocation" },
+      { id: "direction", label: "LONG / SHORT", description: "Select trade direction with market registry maximum open-interest checks" },
+      { id: "leverage", label: "LEVERAGE", description: "Parameterized leverage slider from 1x to 20x with dynamic margin checks" },
+      { id: "pnl", label: "PnL", description: "Real-time mark price accounting minus accrued skew funding rate fees" },
+      { id: "liquidation", label: "LIQUIDATION", description: "Automated keeper liquidation triggered when position margin ratio < 0.5%" }
     ],
-    technologies: ["Solidity", "Foundry", "Next.js", "TypeScript", "Tailwind CSS", "Viem", "DeFi", "Smart Contracts"],
+    contracts: [
+      { name: "Vault.sol", description: "Shared liquidity pool, LP token (PLP), reserved liquidity & solvency guards" },
+      { name: "PositionManager.sol", description: "Position opening/closing, margin accounting, leverage validation & PnL" },
+      { name: "LiquidationEngine.sol", description: "Public keeper engine for liquidating underwater positions (<50 bps margin)" },
+      { name: "FundingRateManager.sol", description: "Dynamic skew-based funding rate tracking & index accumulation" },
+      { name: "OracleManager.sol", description: "Chainlink-compatible price feed abstraction with staleness & zero-price checks" }
+    ],
+    technologies: ["Solidity 0.8.24", "Foundry", "Next.js 14", "TypeScript", "Tailwind CSS", "Viem", "DeFi Protocols", "Smart Contracts"],
     highlights: [
-      "58 automated Foundry tests across 6 test suites (100% pass rate)",
-      "Property-based fuzzing on position lifecycles & margin boundaries",
-      "Peer-to-pool liquidity model with reserved liquidity solvency guards",
-      "Dynamic skew-based funding rate tracking with index accumulation",
-      "Next.js 14 pro trading terminal with interactive candlestick charts",
-      "Local Anvil deployment with mock oracle controller & testnet faucet"
+      "58 automated Foundry tests covering unit, lifecycle, invariant & fuzz testing (100% pass rate)",
+      "Peer-to-pool liquidity model with locked reserve liquidity solvency guards",
+      "Dynamic skew-based funding rate tracking with cumulative index accumulation",
+      "Interactive candlestick charting terminal with live position management and PnL preview",
+      "Oracle simulator & testnet faucet controller for local testing on Anvil"
     ],
     learnings: [
       "Checks-Effects-Interactions (CEI) and reentrancy guards are non-negotiable in financial contracts",
-      "Accounting for cumulative funding rates via index accumulation avoids costly loops",
-      "Solvency guarantees require locking reserve liquidity at the time of position opening"
+      "Accounting for cumulative funding rates via index accumulation avoids costly per-block loops",
+      "Solvency guarantees require locking reserve liquidity at the time of position opening",
+      "Separating oracle verification from core position execution prevents price manipulation"
     ],
+    securityNote:
+      "This protocol is developed as an educational & research engineering project exploring perpetual DEX mechanics. Tested extensively with 58 automated Foundry tests including property fuzzing. It has not undergone formal independent external audits and is not deployed on Ethereum mainnet.",
     github: "https://github.com/Pranadvaishnav/Perigee",
     demo: "",
     image: null

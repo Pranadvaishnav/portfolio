@@ -51,6 +51,20 @@ const MILESTONES = [
     tags: ["Transformers", "Attention", "BPE", "HuggingFace", "tiktoken"],
   },
   {
+    id: "web3",
+    label: "Web3 & Smart Contracts",
+    description:
+      "Engineering on-chain financial protocols in Solidity 0.8.24. Implementing peer-to-pool perpetual futures, collateral vaults, dynamic funding rate accumulators, and automated liquidation keeper engines with 58 automated Foundry tests.",
+    tags: ["Solidity", "Foundry", "Smart Contracts", "EVM", "Viem", "DeFi"],
+  },
+  {
+    id: "ai-web3",
+    label: "AI × Web3 Convergence",
+    description:
+      "Investigating the intersection of intelligence and decentralization: cryptographic image integrity proofs on Polygon Amoy (FaceChain), AI-assisted DeFi analytics, and autonomous protocol agent runtimes.",
+    tags: ["Polygon Amoy", "SHA-256", "FaceChain", "AI × Web3", "Web3.py"],
+  },
+  {
     id: "research",
     label: "Research / Scientific ML",
     description:

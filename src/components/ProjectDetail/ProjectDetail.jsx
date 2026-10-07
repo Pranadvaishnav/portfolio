@@ -170,24 +170,61 @@ export default function ProjectDetail({ project, onClose }) {
 
         {/* Header */}
         <div style={{ marginBottom: 32 }}>
-          {badge && (
-            <span
-              style={{
-                display: "inline-block",
-                padding: "3px 10px",
-                borderRadius: 20,
-                background: badge.bg,
-                color: badge.color,
-                border: `1px solid ${badge.border}`,
-                fontFamily: "JetBrains Mono, monospace",
-                fontSize: 9,
-                letterSpacing: "0.12em",
-                marginBottom: 16,
-              }}
-            >
-              {project.categoryLabel}
-            </span>
-          )}
+          <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 16, flexWrap: "wrap" }}>
+            {badge && (
+              <span
+                style={{
+                  display: "inline-block",
+                  padding: "3px 10px",
+                  borderRadius: 20,
+                  background: badge.bg,
+                  color: badge.color,
+                  border: `1px solid ${badge.border}`,
+                  fontFamily: "JetBrains Mono, monospace",
+                  fontSize: 9,
+                  letterSpacing: "0.12em",
+                  fontWeight: 600,
+                }}
+              >
+                {project.categoryLabel}
+              </span>
+            )}
+            {project.status && (
+              <span
+                style={{
+                  display: "inline-block",
+                  padding: "3px 9px",
+                  borderRadius: 20,
+                  background: "rgba(255,255,255,0.04)",
+                  color: project.status === "completed" ? "#4ade80" : "#fbbf24",
+                  border: `1px solid ${project.status === "completed" ? "rgba(74,222,128,0.2)" : "rgba(251,191,36,0.2)"}`,
+                  fontFamily: "JetBrains Mono, monospace",
+                  fontSize: 8.5,
+                  letterSpacing: "0.12em",
+                  fontWeight: 600,
+                }}
+              >
+                {project.status.toUpperCase()}
+              </span>
+            )}
+            {project.network && (
+              <span
+                style={{
+                  display: "inline-block",
+                  padding: "3px 9px",
+                  borderRadius: 20,
+                  background: "rgba(192,132,252,0.08)",
+                  color: "#c084fc",
+                  border: "1px solid rgba(192,132,252,0.2)",
+                  fontFamily: "JetBrains Mono, monospace",
+                  fontSize: 8.5,
+                  letterSpacing: "0.1em",
+                }}
+              >
+                {project.network}
+              </span>
+            )}
+          </div>
           <h2
             style={{
               margin: "0 0 8px",
@@ -285,7 +322,63 @@ export default function ProjectDetail({ project, onClose }) {
                     </li>
                   ))}
                 </ul>
+                {project.contracts && (
+              <div>
+                <SectionLabel>SMART CONTRACTS ARCHITECTURE</SectionLabel>
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  {project.contracts.map((c) => (
+                    <div
+                      key={c.name}
+                      style={{
+                        padding: "10px 14px",
+                        background: "#0d0d0d",
+                        border: "1px solid #1c1c1c",
+                        borderRadius: 4,
+                      }}
+                    >
+                      <p
+                        style={{
+                          margin: "0 0 4px",
+                          fontFamily: "JetBrains Mono, monospace",
+                          fontSize: 11,
+                          fontWeight: 600,
+                          color: "#c084fc",
+                        }}
+                      >
+                        {c.name}
+                      </p>
+                      <p
+                        style={{
+                          margin: 0,
+                          fontSize: 12,
+                          color: "#777",
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        {c.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
+            )}
+
+            {project.securityNote && (
+              <div
+                style={{
+                  padding: "16px 20px",
+                  borderRadius: 6,
+                  border: "1px solid rgba(251,191,36,0.2)",
+                  background: "rgba(251,191,36,0.03)",
+                }}
+              >
+                <SectionLabel>SECURITY CONSIDERATIONS</SectionLabel>
+                <p style={{ color: "#a0a0a0", fontSize: 12.5, lineHeight: 1.6, margin: 0 }}>
+                  {project.securityNote}
+                </p>
+              </div>
+            )}
+          </div>
             )}
           </div>
 

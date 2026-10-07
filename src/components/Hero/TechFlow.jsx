@@ -1,20 +1,22 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 const NODES = [
-  { id: "python", label: "PYTHON", y: 0 },
-  { id: "data", label: "DATA", y: 1 },
-  { id: "model", label: "MODEL", y: 2 },
-  { id: "system", label: "SYSTEM", y: 3 },
-  { id: "application", label: "APPLICATION", y: 4 },
+  { id: "core", label: "PYTHON / SOLIDITY", y: 0 },
+  { id: "state", label: "DATA & ON-CHAIN", y: 1 },
+  { id: "engine", label: "MODEL / CONTRACT", y: 2 },
+  { id: "system", label: "SYSTEM / EVM", y: 3 },
+  { id: "app", label: "FULL STACK / DAPP", y: 4 },
 ];
 
 const BADGES = [
-  { label: "AI", x: -90, y: 40 },
-  { label: "ML", x: -85, y: 140 },
-  { label: "LLMs", x: 60, y: 60 },
-  { label: "WEB", x: 65, y: 170 },
-  { label: "DATA", x: -80, y: 240 },
-  { label: "RESEARCH", x: 50, y: 280 },
+  { label: "AI", x: -95, y: 35 },
+  { label: "WEB3", x: 80, y: 55 },
+  { label: "ML", x: -90, y: 125 },
+  { label: "DEFI", x: 85, y: 145 },
+  { label: "LLMs", x: -85, y: 215 },
+  { label: "FULL STACK", x: 70, y: 235 },
+  { label: "RESEARCH", x: -75, y: 300 },
+  { label: "EVM", x: 65, y: 320 },
 ];
 
 export default function TechFlow() {
@@ -23,8 +25,8 @@ export default function TechFlow() {
   const nodeH = 44;
   const gap = 28;
   const totalH = NODES.length * nodeH + (NODES.length - 1) * gap;
-  const cx = 120;
-  const svgW = 280;
+  const cx = 130;
+  const svgW = 300;
   const svgH = totalH + 40;
 
   return (
@@ -42,10 +44,10 @@ export default function TechFlow() {
       <div
         style={{
           position: "absolute",
-          width: 240,
-          height: 240,
+          width: 260,
+          height: 260,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(74,158,255,0.06) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(74,158,255,0.06) 0%, rgba(168,85,247,0.04) 50%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
@@ -55,12 +57,13 @@ export default function TechFlow() {
         width={svgW}
         height={svgH}
         viewBox={`0 0 ${svgW} ${svgH}`}
-        aria-label="Technical flow diagram"
+        aria-label="Technical flow diagram connecting AI, Web3, and Full Stack"
       >
         <defs>
           <linearGradient id="flowLine" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#4a9eff" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.3" />
+            <stop offset="0%" stopColor="#4a9eff" stopOpacity="0.7" />
+            <stop offset="50%" stopColor="#c084fc" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#4ade80" stopOpacity="0.4" />
           </linearGradient>
           <filter id="glow">
             <feGaussianBlur stdDeviation="2" result="coloredBlur" />
@@ -97,17 +100,43 @@ export default function TechFlow() {
         {NODES.map((node, i) => {
           const y = 20 + i * (nodeH + gap);
           const isFirst = i === 0;
+          const isMid = i === 2;
           const isLast = i === NODES.length - 1;
+
+          const fill = isFirst
+            ? "rgba(74,158,255,0.12)"
+            : isMid
+            ? "rgba(192,132,252,0.12)"
+            : isLast
+            ? "rgba(74,222,128,0.12)"
+            : "rgba(255,255,255,0.04)";
+
+          const stroke = isFirst
+            ? "rgba(74,158,255,0.3)"
+            : isMid
+            ? "rgba(192,132,252,0.3)"
+            : isLast
+            ? "rgba(74,222,128,0.3)"
+            : "rgba(255,255,255,0.08)";
+
+          const textColor = isFirst
+            ? "#4a9eff"
+            : isMid
+            ? "#c084fc"
+            : isLast
+            ? "#4ade80"
+            : "#c0c0c0";
+
           return (
             <g key={node.id}>
               <rect
-                x={cx - 64}
+                x={cx - 72}
                 y={y}
-                width={128}
+                width={144}
                 height={nodeH}
                 rx={4}
-                fill={isFirst ? "rgba(74,158,255,0.12)" : isLast ? "rgba(167,139,250,0.12)" : "rgba(255,255,255,0.04)"}
-                stroke={isFirst ? "rgba(74,158,255,0.3)" : isLast ? "rgba(167,139,250,0.3)" : "rgba(255,255,255,0.08)"}
+                fill={fill}
+                stroke={stroke}
                 strokeWidth={1}
               />
               <text
@@ -115,25 +144,25 @@ export default function TechFlow() {
                 y={y + nodeH / 2 + 1}
                 textAnchor="middle"
                 dominantBaseline="middle"
-                fill={isFirst ? "#4a9eff" : isLast ? "#a78bfa" : "#c0c0c0"}
+                fill={textColor}
                 style={{
                   fontFamily: "JetBrains Mono, monospace",
-                  fontSize: 10,
+                  fontSize: 9.5,
                   fontWeight: 600,
-                  letterSpacing: "0.12em",
+                  letterSpacing: "0.1em",
                 }}
               >
                 {node.label}
               </text>
               {/* Pulse dot */}
               <circle
-                cx={cx + 70}
+                cx={cx + 80}
                 cy={y + nodeH / 2}
                 r={3}
-                fill={isFirst ? "#4a9eff" : isLast ? "#a78bfa" : "#444"}
+                fill={textColor}
                 style={{
                   animation: "pulse-dot 2s ease-in-out infinite",
-                  animationDelay: `${i * 0.4}s`,
+                  animationDelay: `${i * 0.35}s`,
                 }}
               />
             </g>
@@ -141,18 +170,18 @@ export default function TechFlow() {
         })}
 
         {/* Floating badges */}
-        {BADGES.map((badge) => (
+        {BADGES.map((badge, idx) => (
           <g
             key={badge.label}
             style={{
               animation: "float 3s ease-in-out infinite",
-              animationDelay: `${Math.random() * 2}s`,
+              animationDelay: `${(idx * 0.4) % 2}s`,
             }}
           >
             <rect
-              x={cx + badge.x - 20}
+              x={cx + badge.x - 16}
               y={badge.y}
-              width={40 + badge.label.length * 4}
+              width={34 + badge.label.length * 4.8}
               height={20}
               rx={10}
               fill="rgba(255,255,255,0.04)"
@@ -160,11 +189,11 @@ export default function TechFlow() {
               strokeWidth={1}
             />
             <text
-              x={cx + badge.x + (20 + badge.label.length * 2)}
+              x={cx + badge.x + (17 + (badge.label.length * 4.8) / 2) - 16}
               y={badge.y + 10}
               textAnchor="middle"
               dominantBaseline="middle"
-              fill="#666"
+              fill="#777"
               style={{
                 fontFamily: "JetBrains Mono, monospace",
                 fontSize: 8,

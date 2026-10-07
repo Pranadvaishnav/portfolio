@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ArrowRight, Mail } from "lucide-react";
 import { GithubIcon } from "../icons";
 import TechFlow from "./TechFlow";
@@ -89,14 +89,23 @@ export default function Hero() {
                 color: "#666",
               }}
             >
-              CHANDIGARH UNIVERSITY Â· CS Â· 2028
+              CHANDIGARH UNIVERSITY · CS · 2028
             </span>
+          </div>
+
+          {/* Pillars chip strip */}
+          <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 20, flexWrap: "wrap" }}>
+            <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, letterSpacing: "0.12em", color: "#4a9eff", padding: "3px 10px", background: "rgba(74,158,255,0.08)", border: "1px solid rgba(74,158,255,0.2)", borderRadius: 12 }}>AI / ML</span>
+            <span style={{ color: "#444", fontSize: 11 }}>×</span>
+            <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, letterSpacing: "0.12em", color: "#c084fc", padding: "3px 10px", background: "rgba(192,132,252,0.08)", border: "1px solid rgba(192,132,252,0.2)", borderRadius: 12 }}>WEB3</span>
+            <span style={{ color: "#444", fontSize: 11 }}>×</span>
+            <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, letterSpacing: "0.12em", color: "#4ade80", padding: "3px 10px", background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.2)", borderRadius: 12 }}>FULL STACK</span>
           </div>
 
           {/* Headline */}
           <h1
             style={{
-              margin: "0 0 16px",
+              margin: "0 0 20px",
               lineHeight: 1.05,
               fontWeight: 700,
             }}
@@ -104,7 +113,7 @@ export default function Hero() {
             <span
               style={{
                 display: "block",
-                fontSize: "clamp(40px, 6vw, 80px)",
+                fontSize: "clamp(38px, 5.5vw, 76px)",
                 letterSpacing: "-0.02em",
                 color: "#f0f0f0",
               }}
@@ -114,53 +123,54 @@ export default function Hero() {
             <span
               style={{
                 display: "block",
-                fontSize: "clamp(40px, 6vw, 80px)",
+                fontSize: "clamp(38px, 5.5vw, 76px)",
                 letterSpacing: "-0.02em",
                 color: "#f0f0f0",
               }}
             >
+              INTELLIGENT
+            </span>
+            <span
+              style={{
+                display: "block",
+                fontSize: "clamp(34px, 4.8vw, 64px)",
+                letterSpacing: "-0.02em",
+                background: "linear-gradient(135deg, #4a9eff 0%, #c084fc 50%, #4ade80 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              & DECENTRALIZED
+            </span>
+            <span
+              style={{
+                display: "block",
+                fontSize: "clamp(34px, 4.8vw, 64px)",
+                letterSpacing: "-0.02em",
+                background: "linear-gradient(135deg, #d4c5a9 0%, #888 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
               SYSTEMS.
-            </span>
-            <span
-              style={{
-                display: "block",
-                fontSize: "clamp(36px, 5vw, 68px)",
-                letterSpacing: "-0.02em",
-                background: "linear-gradient(135deg, #888 0%, #444 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              UNDERSTANDING
-            </span>
-            <span
-              style={{
-                display: "block",
-                fontSize: "clamp(36px, 5vw, 68px)",
-                letterSpacing: "-0.02em",
-                background: "linear-gradient(135deg, #4a9eff 0%, #a78bfa 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              INTELLIGENCE.
             </span>
           </h1>
 
           {/* Subtext */}
           <p
             style={{
-              color: "#666",
-              fontSize: 16,
+              color: "#777",
+              fontSize: 15,
               lineHeight: 1.7,
-              margin: "0 0 40px",
-              maxWidth: 480,
+              margin: "0 0 36px",
+              maxWidth: 490,
             }}
           >
-            Computer Science student exploring AI/ML, full-stack development,
-            and research through hands-on projects and technical experimentation.
+            Computer Science student building AI/ML systems, Web3 applications,
+            and full-stack software while exploring the intersection of intelligent
+            and decentralized architectures.
           </p>
 
           {/* CTAs */}

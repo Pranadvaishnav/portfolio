@@ -5,6 +5,7 @@ import { projects } from "../../data/projects";
 const CAT_LABELS = {
   languages: "Languages",
   aiml: "AI / ML",
+  web3: "Web3 / Blockchain",
   web: "Web Dev",
   databases: "Databases",
   devops: "DevOps",
@@ -67,58 +68,101 @@ export default function TechStack() {
         }}
         className="tech-main-grid"
       >
-        {/* Tech items */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 8,
-          }}
-        >
-          {currentCat?.technologies.map((tech) => {
-            const isSelected = selectedTech?.id === tech.id;
-            const hasProjects = tech.projects.length > 0;
-            return (
-              <button
-                key={tech.id}
-                onClick={() =>
-                  setSelectedTech(isSelected ? null : tech)
-                }
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 8,
+            }}
+          >
+            {currentCat?.technologies.map((tech) => {
+              const isSelected = selectedTech?.id === tech.id;
+              const hasProjects = tech.projects.length > 0;
+              return (
+                <button
+                  key={tech.id}
+                  onClick={() =>
+                    setSelectedTech(isSelected ? null : tech)
+                  }
+                  style={{
+                    fontFamily: "JetBrains Mono, monospace",
+                    fontSize: 11,
+                    letterSpacing: "0.06em",
+                    padding: "10px 18px",
+                    border: "1px solid",
+                    borderColor: isSelected ? "#4a9eff" : hasProjects ? "#2a2a2a" : "#1a1a1a",
+                    borderRadius: 4,
+                    background: isSelected
+                      ? "rgba(74,158,255,0.1)"
+                      : "rgba(255,255,255,0.02)",
+                    color: isSelected ? "#4a9eff" : hasProjects ? "#c0c0c0" : "#444",
+                    cursor: "pointer",
+                    transition: "all 0.15s",
+                    position: "relative",
+                  }}
+                >
+                  {tech.name}
+                  {hasProjects && !isSelected && (
+                    <span
+                      style={{
+                        position: "absolute",
+                        top: -4,
+                        right: -4,
+                        width: 6,
+                        height: 6,
+                        borderRadius: "50%",
+                        background: "#4a9eff",
+                        border: "1px solid #0a0a0a",
+                      }}
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {currentCat?.exploring && currentCat.exploring.length > 0 && (
+            <div
+              style={{
+                marginTop: 8,
+                padding: "14px 18px",
+                borderRadius: 6,
+                background: "rgba(255,255,255,0.015)",
+                border: "1px dashed #202020",
+              }}
+            >
+              <p
                 style={{
                   fontFamily: "JetBrains Mono, monospace",
-                  fontSize: 11,
-                  letterSpacing: "0.06em",
-                  padding: "10px 18px",
-                  border: "1px solid",
-                  borderColor: isSelected ? "#4a9eff" : hasProjects ? "#2a2a2a" : "#1a1a1a",
-                  borderRadius: 4,
-                  background: isSelected
-                    ? "rgba(74,158,255,0.1)"
-                    : "rgba(255,255,255,0.02)",
-                  color: isSelected ? "#4a9eff" : hasProjects ? "#c0c0c0" : "#444",
-                  cursor: "pointer",
-                  transition: "all 0.15s",
-                  position: "relative",
+                  fontSize: 8.5,
+                  letterSpacing: "0.14em",
+                  color: "#555",
+                  margin: "0 0 10px",
                 }}
               >
-                {tech.name}
-                {hasProjects && !isSelected && (
+                CURRENTLY EXPLORING / LEARNING
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                {currentCat.exploring.map((exp) => (
                   <span
+                    key={exp}
                     style={{
-                      position: "absolute",
-                      top: -4,
-                      right: -4,
-                      width: 6,
-                      height: 6,
-                      borderRadius: "50%",
-                      background: "#4a9eff",
-                      border: "1px solid #0a0a0a",
+                      fontFamily: "JetBrains Mono, monospace",
+                      fontSize: 9,
+                      color: "#777",
+                      padding: "3px 8px",
+                      borderRadius: 3,
+                      background: "#111",
+                      border: "1px solid #1a1a1a",
                     }}
-                  />
-                )}
-              </button>
-            );
-          })}
+                  >
+                    · {exp}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Project relationship panel */}
