@@ -1,14 +1,11 @@
 import Hero from "../components/Hero/Hero";
 import Snapshot from "../components/Snapshot/Snapshot";
-import Pillars from "../components/Pillars/Pillars";
-import CurrentlyBuilding from "../components/CurrentlyBuilding/CurrentlyBuilding";
 import ProjectGrid from "../components/Work/ProjectGrid";
-import AIWeb3 from "../components/AIWeb3/AIWeb3";
-import TechStack from "../components/TechStack/TechStack";
+import Pillars from "../components/Pillars/Pillars";
 import ResearchCard from "../components/Research/ResearchCard";
-import Timeline from "../components/Timeline/Timeline";
 import GitHubRepos from "../components/GitHub/GitHubRepos";
 import About from "../components/About/About";
+import Timeline from "../components/Timeline/Timeline";
 import SocialLinks from "../components/SocialLinks/SocialLinks";
 import ResumeCTA from "../components/ResumeCTA/ResumeCTA";
 import Contact from "../components/Contact/Contact";
@@ -81,21 +78,8 @@ export default function Home() {
       {/* ── 2. Snapshot Strip ── */}
       <Snapshot />
 
-      {/* ── 3. Three Technical Pillars ── */}
-      <Pillars />
-
-      {/* ── 4. Currently Building ── */}
-      <Section style={{ background: "#090909" }}>
-        <SectionHeader
-          label="ACTIVE TRACKS"
-          title="Currently Building"
-          subtitle="A snapshot of active development efforts across intelligent models, decentralized protocols, and full-stack software."
-        />
-        <CurrentlyBuilding />
-      </Section>
-
-      {/* ── 5. Selected Work ── */}
-      <Section>
+      {/* ── 3. Selected Work / Projects ── */}
+      <Section id="work">
         <SectionHeader
           label="PORTFOLIO"
           title="Selected Work"
@@ -104,28 +88,11 @@ export default function Home() {
         <ProjectGrid />
       </Section>
 
-      {/* ── 6. AI × Web3 Convergence ── */}
-      <Section style={{ background: "#090909" }}>
-        <SectionHeader
-          label="CONVERGENCE"
-          title="AI × Web3"
-          subtitle="Active explorations at the intersection of machine learning systems and permissionless blockchains."
-        />
-        <AIWeb3 />
-      </Section>
+      {/* ── 4. AI / ML • WEB3 • FULL STACK Technical Section ── */}
+      <Pillars />
 
-      {/* ── 7. Technical Stack ── */}
-      <Section>
-        <SectionHeader
-          label="CAPABILITIES"
-          title="Technical Stack"
-          subtitle="Confirmed tools and frameworks mapped directly to working projects. Click any technology to see its implementation."
-        />
-        <TechStack />
-      </Section>
-
-      {/* ── 8. Research & Experiments ── */}
-      <Section style={{ background: "#090909" }}>
+      {/* ── 5. Research & Experiments ── */}
+      <Section id="research" style={{ background: "#090909" }}>
         <SectionHeader
           label="EXPLORATIONS"
           title="Research & Experiments"
@@ -144,71 +111,69 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ── 9. GitHub Repos ── */}
-      <Section>
+      {/* ── 6. GitHub Projects & Activity ── */}
+      <Section id="github">
         <SectionHeader
           label="FROM THE REPOSITORIES"
           title="GitHub Projects"
-          subtitle="Live repositories fetched directly via GitHub REST API, categorized across AI/ML, Web3, and Full Stack."
+          subtitle="Live repositories fetched directly via GitHub REST API, highlighting active code and experiments."
         />
         <GitHubRepos />
       </Section>
 
-      {/* ── 10. Technical Journey ── */}
-      <Section style={{ background: "#090909" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 60,
-            alignItems: "flex-start",
-          }}
-          className="timeline-grid"
-        >
-          <div>
-            <SectionHeader
-              label="PROGRESSION"
-              title="Current Technical Journey"
-              subtitle="A map of how foundational systems, full-stack development, machine learning, and Web3 smart contracts interconnect."
-            />
-            <p
-              style={{
-                color: "#555",
-                fontSize: 13,
-                lineHeight: 1.6,
-                margin: 0,
-              }}
-            >
-              Click each milestone to expand its architectural focus and tools.
-            </p>
-          </div>
-          <Timeline />
-        </div>
-        <style>{`
-          @media (max-width: 768px) {
-            .timeline-grid { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
-      </Section>
-
-      {/* ── 11. About ── */}
-      <Section>
+      {/* ── 7. About & Education / Progression ── */}
+      <Section id="about" style={{ background: "#090909" }}>
         <About />
+        <div style={{ marginTop: 60, borderTop: "1px solid #161616", paddingTop: 60 }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 60,
+              alignItems: "flex-start",
+            }}
+            className="timeline-grid"
+          >
+            <div>
+              <SectionHeader
+                label="PROGRESSION"
+                title="Current Technical Journey"
+                subtitle="A map of how foundational systems, full-stack engineering, machine learning, and Web3 smart contracts interconnect."
+              />
+              <p
+                style={{
+                  color: "#555",
+                  fontSize: 13,
+                  lineHeight: 1.6,
+                  margin: 0,
+                }}
+              >
+                Click each milestone to expand its architectural focus and tools.
+              </p>
+            </div>
+            <Timeline />
+          </div>
+          <style>{`
+            @media (max-width: 768px) {
+              .timeline-grid { grid-template-columns: 1fr !important; }
+            }
+          `}</style>
+        </div>
       </Section>
 
-      {/* ── 12. Elsewhere ── */}
+      {/* ── 8. Resume CTA ── */}
+      <Section>
+        <ResumeCTA />
+      </Section>
+
+      {/* ── 9. Elsewhere ── */}
       <Section style={{ background: "#090909" }}>
         <SectionHeader label="ELSEWHERE" title="Find Me Online" />
         <SocialLinks />
       </Section>
 
-      {/* ── 13. Resume CTA ── */}
-      <Section>
-        <ResumeCTA />
-      </Section>
-
-      {/* ── 14. Contact ── */}
-      <Section id="contact" style={{ background: "#090909" }}>
+      {/* ── 10. Contact ── */}
+      <Section id="contact">
         <Contact />
       </Section>
     </main>

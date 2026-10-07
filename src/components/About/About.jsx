@@ -40,7 +40,7 @@ export default function About() {
             I'm a Computer Science student at Chandigarh University interested in understanding how intelligent and decentralized systems work, and building software that connects them. I'm drawn to technical challenges that require understanding systems deeply from first principles rather than merely consuming high-level abstractions.
           </p>
           <p style={{ color: "#777", fontSize: 14, lineHeight: 1.7, margin: 0 }}>
-            My work spans three interconnected pillars: <strong>AI & Machine Learning</strong> (implementing transformer LLMs from scratch, variational autoencoders, and entity resolution systems), <strong>Web3 & Decentralized Protocols</strong> (authoring Solidity smart contracts, perpetual futures exchange mechanics, and cryptographic verification on Polygon), and <strong>Full-Stack Software</strong> (responsive Next.js/React terminals, Express APIs, and PostgreSQL architectures).
+            I focus on engineering systems with structural rigor — from training attention mechanisms and mathematical representations in PyTorch to writing gas-optimized smart contracts adhering to CEI security, backed by type-safe APIs and responsive interactive terminals.
           </p>
           <p style={{ color: "#777", fontSize: 14, lineHeight: 1.7, margin: 0 }}>
             I'm also curious about technical research — investigating the intersection of machine learning and physical datasets (such as collider physics and seismic signal processing), alongside the convergence of AI agents and on-chain protocol architectures.

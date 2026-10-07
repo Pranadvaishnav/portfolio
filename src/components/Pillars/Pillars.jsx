@@ -83,10 +83,11 @@ export default function Pillars() {
 
   return (
     <section
+      id="pillars"
       style={{
-        padding: "60px 24px",
-        borderBottom: "1px solid #141414",
-        background: "linear-gradient(180deg, #0a0a0a 0%, #0d0d0d 100%)",
+        padding: "80px 24px",
+        borderTop: "1px solid #141414",
+        background: "#090909",
       }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>

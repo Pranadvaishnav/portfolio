@@ -16,6 +16,37 @@ const LANG_COLORS = {
   "Jupyter Notebook": "#DA5B0B",
 };
 
+// Fallback descriptions for real repositories that haven't set a GitHub repo description yet
+const FALLBACK_DESCRIPTIONS = {
+  Perigee:
+    "Perpetual DEX protocol with isolated margin vaults, liquidation engine, and Next.js trading terminal.",
+  portfolio:
+    "Personal engineering portfolio built with React and Tailwind CSS showcasing AI/ML, Web3, and Full Stack work.",
+  "event-management":
+    "Full-stack event booking and management system with Docker and Jenkins CI/CD pipeline.",
+  "Seismic-Data-Processing":
+    "Geophysical signal processing pipeline using FFT, bandpass filtering, and SEG-Y seismic trace analysis.",
+  "Transfer-Learning":
+    "Deep learning image classification using pre-trained convolutional neural networks in PyTorch.",
+};
+
+// Dynamically filter out empty, placeholder, or test repositories
+function isMeaningfulRepo(repo) {
+  // Must have a real codebase (size > 6 KB)
+  if (!repo.size || repo.size <= 6) return false;
+
+  // Filter out placeholder names, test repos, or short arbitrary names
+  if (repo.name.length <= 2 || repo.name.toLowerCase() === "test" || repo.name.toLowerCase() === "cc") {
+    return false;
+  }
+
+  // Must have a meaningful description (from GitHub or verified fallback)
+  const desc = (repo.description || "").trim();
+  if (!desc || desc.length < 15) return false;
+
+  return true;
+}
+
 function getRepoCategory(repo) {
   const str = `${repo.name} ${repo.description || ""} ${(repo.topics || []).join(" ")} ${repo.language || ""}`.toLowerCase();
   if (repo.language === "Solidity" || str.includes("solidity") || str.includes("blockchain") || str.includes("polygon") || str.includes("defi") || str.includes("perigee") || str.includes("facechain") || str.includes("web3") || str.includes("smart-contract")) {
@@ -251,7 +282,14 @@ export default function GitHubRepos() {
     );
   }
 
-  const filteredRepos = repos.filter((r) => {
+  const meaningfulRepos = repos
+    .map((r) => ({
+      ...r,
+      description: r.description || FALLBACK_DESCRIPTIONS[r.name] || null,
+    }))
+    .filter(isMeaningfulRepo);
+
+  const filteredRepos = meaningfulRepos.filter((r) => {
     if (filter === "ALL") return true;
     return getRepoCategory(r) === filter;
   });
@@ -298,7 +336,7 @@ export default function GitHubRepos() {
                 margin: 0,
               }}
             >
-              {profile.public_repos} public repositories on GitHub
+              {meaningfulRepos.length} featured repositories · {profile.public_repos} total on GitHub
             </p>
           </div>
           <a
