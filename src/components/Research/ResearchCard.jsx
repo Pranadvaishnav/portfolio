@@ -122,22 +122,46 @@ export default function ResearchCard({ item }) {
         </p>
       )}
 
-      <button
-        onClick={() => setExpanded(!expanded)}
-        style={{
-          background: "none",
-          border: "none",
-          fontFamily: "JetBrains Mono, monospace",
-          fontSize: 9,
-          letterSpacing: "0.1em",
-          color: "#444",
-          cursor: "pointer",
-          padding: "8px 0 0",
-          display: "block",
-        }}
-      >
-        {expanded ? "COLLAPSE ↑" : "READ MORE ↓"}
-      </button>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 12 }}>
+        <button
+          onClick={() => setExpanded(!expanded)}
+          style={{
+            background: "none",
+            border: "none",
+            fontFamily: "JetBrains Mono, monospace",
+            fontSize: 9,
+            letterSpacing: "0.1em",
+            color: "#444",
+            cursor: "pointer",
+            padding: "8px 0 0",
+            display: "block",
+          }}
+        >
+          {expanded ? "COLLAPSE ↑" : "READ MORE ↓"}
+        </button>
+        {item.github && (
+          <a
+            href={item.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "JetBrains Mono, monospace",
+              fontSize: 9,
+              letterSpacing: "0.1em",
+              color: "#4a9eff",
+              textDecoration: "none",
+              padding: "4px 10px",
+              border: "1px solid rgba(74,158,255,0.2)",
+              borderRadius: 4,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 4,
+            }}
+          >
+            REPO ↗
+          </a>
+        )}
+      </div>
     </article>
   );
 }

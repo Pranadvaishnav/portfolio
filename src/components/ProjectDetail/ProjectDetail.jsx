@@ -1,11 +1,13 @@
-﻿import { useEffect } from "react";
+import { useEffect } from "react";
 import { X, ExternalLink } from "lucide-react";
 import { GithubIcon } from "../icons";
 
 const BADGE_STYLES = {
   ML: { bg: "rgba(74,158,255,0.12)", color: "#4a9eff", border: "rgba(74,158,255,0.2)" },
   LLM: { bg: "rgba(167,139,250,0.12)", color: "#a78bfa", border: "rgba(167,139,250,0.2)" },
+  WEB3: { bg: "rgba(168,85,247,0.12)", color: "#c084fc", border: "rgba(168,85,247,0.2)" },
   FULLSTACK: { bg: "rgba(74,222,128,0.12)", color: "#4ade80", border: "rgba(74,222,128,0.2)" },
+  DEVOPS: { bg: "rgba(249,115,22,0.12)", color: "#fb923c", border: "rgba(249,115,22,0.2)" },
   DATA: { bg: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "rgba(251,191,36,0.2)" },
   SCIENCE: { bg: "rgba(248,113,113,0.12)", color: "#f87171", border: "rgba(248,113,113,0.2)" },
 };

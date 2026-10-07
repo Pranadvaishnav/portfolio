@@ -7,7 +7,9 @@ const FILTERS = [
   { id: "ALL", label: "ALL" },
   { id: "ML", label: "AI / ML" },
   { id: "LLM", label: "LLM / NLP" },
+  { id: "WEB3", label: "WEB3 / DEFI" },
   { id: "FULLSTACK", label: "FULL STACK" },
+  { id: "DEVOPS", label: "DEVOPS" },
   { id: "DATA", label: "DATA / GRAPH" },
   { id: "SCIENCE", label: "SCIENTIFIC" },
 ];

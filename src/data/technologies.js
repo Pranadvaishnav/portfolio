@@ -8,13 +8,13 @@ export const techCategories = [
     id: "languages",
     label: "Languages",
     technologies: [
-      { id: "python", name: "Python", projects: ["business-entity-resolution", "llm-from-scratch", "vae-anomaly-detection", "graph-fraud-investigation", "seismic-data-processing"] },
-      { id: "cpp", name: "C++", projects: [] },
-      { id: "java", name: "Java", projects: [] },
+      { id: "python", name: "Python", projects: ["business-entity-resolution", "llm-from-scratch", "vae-anomaly-detection", "facechain-verification", "graph-fraud-investigation", "seismic-data-processing"] },
+      { id: "solidity", name: "Solidity", projects: ["perigee-protocol", "facechain-verification"] },
+      { id: "typescript", name: "TypeScript", projects: ["perigee-protocol"] },
       { id: "javascript", name: "JavaScript", projects: ["sleep-tracker", "event-management"] },
-      { id: "sql", name: "SQL", projects: ["sleep-tracker"] },
-      { id: "html", name: "HTML", projects: ["event-management"] },
-      { id: "css", name: "CSS", projects: ["event-management"] }
+      { id: "java", name: "Java", projects: ["devops-pipeline"] },
+      { id: "cpp", name: "C++", projects: [] },
+      { id: "sql", name: "SQL", projects: ["sleep-tracker"] }
     ]
   },
   {
@@ -22,26 +22,40 @@ export const techCategories = [
     label: "AI / ML",
     technologies: [
       { id: "pytorch", name: "PyTorch", projects: ["llm-from-scratch", "vae-anomaly-detection"] },
-      { id: "tensorflow", name: "TensorFlow", projects: [] },
-      { id: "keras", name: "Keras", projects: [] },
+      { id: "face-recognition", name: "face_recognition", projects: ["facechain-verification"] },
       { id: "transformers", name: "Transformers", projects: ["llm-from-scratch"] },
       { id: "huggingface", name: "HuggingFace", projects: ["llm-from-scratch"] },
       { id: "tiktoken", name: "tiktoken", projects: ["llm-from-scratch"] },
       { id: "lightgbm", name: "LightGBM", projects: ["business-entity-resolution"] },
       { id: "rapidfuzz", name: "RapidFuzz", projects: ["business-entity-resolution"] },
-      { id: "numpy", name: "NumPy", projects: ["vae-anomaly-detection", "seismic-data-processing"] },
+      { id: "numpy", name: "NumPy", projects: ["vae-anomaly-detection", "facechain-verification", "seismic-data-processing"] },
       { id: "pandas", name: "Pandas", projects: ["business-entity-resolution", "vae-anomaly-detection"] },
-      { id: "matplotlib", name: "Matplotlib", projects: ["seismic-data-processing"] }
+      { id: "matplotlib", name: "Matplotlib", projects: ["seismic-data-processing"] },
+      { id: "tensorflow", name: "TensorFlow", projects: [] },
+      { id: "keras", name: "Keras", projects: [] }
+    ]
+  },
+  {
+    id: "web3",
+    label: "Web3 / DeFi",
+    technologies: [
+      { id: "solidity-tech", name: "Solidity 0.8.24", projects: ["perigee-protocol", "facechain-verification"] },
+      { id: "foundry", name: "Foundry", projects: ["perigee-protocol"] },
+      { id: "hardhat", name: "Hardhat", projects: ["facechain-verification"] },
+      { id: "viem", name: "Viem", projects: ["perigee-protocol"] },
+      { id: "web3py", name: "Web3.py", projects: ["facechain-verification"] },
+      { id: "polygon", name: "Polygon Amoy", projects: ["facechain-verification"] }
     ]
   },
   {
     id: "web",
     label: "Web Dev",
     technologies: [
-      { id: "react", name: "React", projects: ["sleep-tracker"] },
+      { id: "nextjs", name: "Next.js 14", projects: ["perigee-protocol"] },
+      { id: "react", name: "React", projects: ["sleep-tracker", "perigee-protocol"] },
+      { id: "tailwind", name: "Tailwind CSS", projects: ["sleep-tracker", "perigee-protocol"] },
       { id: "nodejs", name: "Node.js", projects: ["sleep-tracker", "event-management"] },
       { id: "express", name: "Express.js", projects: ["sleep-tracker", "event-management"] },
-      { id: "tailwind", name: "Tailwind CSS", projects: ["sleep-tracker"] },
       { id: "vite", name: "Vite", projects: ["sleep-tracker"] },
       { id: "recharts", name: "Recharts", projects: ["sleep-tracker"] }
     ]
@@ -59,15 +73,15 @@ export const techCategories = [
   },
   {
     id: "devops",
-    label: "DevOps",
+    label: "DevOps & Cloud",
     technologies: [
-      { id: "docker", name: "Docker", projects: [] },
-      { id: "jenkins", name: "Jenkins", projects: [] },
-      { id: "git", name: "Git", projects: [] },
-      { id: "github", name: "GitHub", projects: [] },
-      { id: "aws-ec2", name: "AWS EC2", projects: [] },
-      { id: "aws-s3", name: "AWS S3", projects: [] },
-      { id: "linux", name: "Linux", projects: [] },
+      { id: "docker", name: "Docker", projects: ["devops-pipeline"] },
+      { id: "jenkins", name: "Jenkins", projects: ["devops-pipeline"] },
+      { id: "aws-ec2", name: "AWS EC2", projects: ["devops-pipeline"] },
+      { id: "git", name: "Git", projects: ["devops-pipeline", "perigee-protocol"] },
+      { id: "github", name: "GitHub", projects: ["devops-pipeline", "perigee-protocol"] },
+      { id: "maven", name: "Maven", projects: ["devops-pipeline"] },
+      { id: "linux", name: "Linux / Ubuntu", projects: ["devops-pipeline"] },
       { id: "wsl", name: "WSL", projects: [] }
     ]
   },
@@ -76,8 +90,7 @@ export const techCategories = [
     label: "Tools",
     technologies: [
       { id: "vscode", name: "VS Code", projects: [] },
-      { id: "intellij", name: "IntelliJ", projects: [] },
-      { id: "maven", name: "Maven", projects: [] }
+      { id: "intellij", name: "IntelliJ", projects: ["devops-pipeline"] }
     ]
   }
 ];

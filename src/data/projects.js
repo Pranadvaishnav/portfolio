@@ -7,6 +7,90 @@
 
 export const projects = [
   {
+    id: "perigee-protocol",
+    title: "Perigee Protocol — Perpetual DEX",
+    shortTitle: "Perigee Protocol",
+    category: "WEB3",
+    categoryLabel: "Web3 / DeFi",
+    featured: true,
+    status: "completed",
+    tagline: "High-performance decentralized perpetual futures protocol with 20x leverage.",
+    description:
+      "A decentralized perpetual futures protocol built with Solidity 0.8.24, Foundry, and a Next.js 14 high-density trading terminal. Traders execute leveraged Long and Short perpetual positions on ETH/USD and BTC/USD with up to 20x leverage, peer-to-pool liquidity, guaranteed execution, automated liquidation keepers, and dynamic funding rate mechanisms.",
+    problem:
+      "Centralized trading platforms expose users to custodial risk and counterparty failure, while decentralized perpetuals often suffer from poor capital efficiency, oracle front-running, or opaque liquidation mechanics.",
+    approach:
+      "Architected a modular smart contract suite adhering strictly to the Checks-Effects-Interactions (CEI) security model. Implemented Vault.sol for LP collateral and solvency guards, PositionManager for margin and PnL, LiquidationEngine for underwater margin calls, and OracleManager with price staleness checks. Built a 58-test Foundry test suite (100% pass rate) with invariant and property-based fuzzing.",
+    pipeline: [
+      { id: "vault", label: "VAULT COLLATERAL", description: "Shared liquidity pool (MockUSDC) with PLP share accounting & solvency guard" },
+      { id: "oracle", label: "ORACLE MANAGER", description: "Chainlink-compatible price feeds with staleness & zero-price checks" },
+      { id: "position", label: "POSITION MANAGER", description: "Margin accounting, 1x-20x leverage slider, and Long/Short entry" },
+      { id: "funding", label: "FUNDING ENGINE", description: "Dynamic skew-based funding rate tracking & index accumulation" },
+      { id: "liquidation", label: "LIQUIDATION KEEPER", description: "Public keeper engine liquidating positions below 0.5% margin ratio" },
+      { id: "terminal", label: "PRO TRADING UI", description: "Next.js 14 terminal with candlestick charts, Viem execution & oracle simulator" }
+    ],
+    technologies: ["Solidity", "Foundry", "Next.js", "TypeScript", "Tailwind CSS", "Viem", "DeFi", "Smart Contracts"],
+    highlights: [
+      "58 automated Foundry tests across 6 test suites (100% pass rate)",
+      "Property-based fuzzing on position lifecycles & margin boundaries",
+      "Peer-to-pool liquidity model with reserved liquidity solvency guards",
+      "Dynamic skew-based funding rate tracking with index accumulation",
+      "Next.js 14 pro trading terminal with interactive candlestick charts",
+      "Local Anvil deployment with mock oracle controller & testnet faucet"
+    ],
+    learnings: [
+      "Checks-Effects-Interactions (CEI) and reentrancy guards are non-negotiable in financial contracts",
+      "Accounting for cumulative funding rates via index accumulation avoids costly loops",
+      "Solvency guarantees require locking reserve liquidity at the time of position opening"
+    ],
+    github: "https://github.com/Pranadvaishnav/Perigee",
+    demo: "",
+    image: null
+  },
+
+  {
+    id: "facechain-verification",
+    title: "FaceChain — Face ID & Blockchain Verification",
+    shortTitle: "FaceChain",
+    category: "ML",
+    categoryLabel: "AI / Blockchain",
+    featured: true,
+    status: "completed",
+    tagline: "Facial recognition combined with cryptographic image integrity on Polygon Amoy.",
+    description:
+      "A multimodal identity verification pipeline combining deep facial embeddings with on-chain cryptographic proofs. The system identifies faces in input images, executes reverse image search via Google Lens, computes cryptographic SHA-256 fingerprints, and registers/verifies them on the Polygon Amoy blockchain to detect file tampering.",
+    problem:
+      "Digital images and profile photos can be effortlessly manipulated or altered. Proving whether an image file has remained pristine since its registration requires an immutable, decentralized audit trail.",
+    approach:
+      "Built an end-to-end Python pipeline using face_recognition deep embeddings for detection and similarity matching, SerpApi for reverse candidate image retrieval, SHA-256 hashing for tamper detection, and Solidity/Hardhat contracts (FaceRegistry.sol) on Polygon Amoy testnet for decentralized timestamping and proof of integrity.",
+    pipeline: [
+      { id: "input", label: "INPUT IMAGE", description: "User photograph or identity document image" },
+      { id: "embed", label: "FACE EMBEDDINGS", description: "Face detection & 128-d deep facial embeddings via face_recognition" },
+      { id: "search", label: "REVERSE SEARCH", description: "Google Lens candidate image retrieval via SerpApi" },
+      { id: "match", label: "SIMILARITY MATCHER", description: "Vector distance matching against candidate images" },
+      { id: "hash", label: "SHA-256 FINGERPRINT", description: "Cryptographic 256-bit hash representing exact file content" },
+      { id: "chain", label: "POLYGON REGISTRY", description: "Smart contract on Polygon Amoy storing hash, timestamp & wallet address" },
+      { id: "verify", label: "TAMPER VERIFICATION", description: "Real-time hash comparison flagging VERIFIED vs TAMPERED status" }
+    ],
+    technologies: ["Python", "face_recognition", "NumPy", "Solidity", "Hardhat", "Web3.py", "Polygon", "SHA-256"],
+    highlights: [
+      "Deep facial embeddings for high-confidence identity candidate matching",
+      "Automated reverse image search via Google Lens engine",
+      "Smart contract deployed on Polygon Amoy Testnet (Chain ID 80002)",
+      "Cryptographic tamper detection proving exact byte-level integrity",
+      "End-to-end CLI workflow for registration, search, and verification"
+    ],
+    learnings: [
+      "Separation of concerns: AI for visual matching, cryptography for tamper proofing",
+      "SHA-256 verifies exact byte-level integrity, while embeddings tolerate visual variance",
+      "Web3.py enables direct contract calls and event log parsing from Python pipelines"
+    ],
+    github: "https://github.com/Pranadvaishnav/Face_Identification_-_Blockchain_Verification",
+    demo: "",
+    image: null
+  },
+
+  {
     id: "business-entity-resolution",
     title: "Business Entity Resolution",
     shortTitle: "Entity Resolution",
@@ -44,7 +128,7 @@ export const projects = [
       "LightGBM handles sparse, noisy feature vectors well with minimal tuning",
       "String normalization has outsized impact on downstream matching quality"
     ],
-    github: "", // fill in your actual repo URL
+    github: "",
     demo: "",
     image: null
   },
@@ -97,7 +181,7 @@ export const projects = [
       "Residual connections are critical for training deep networks",
       "BPE vocabulary size is a significant tradeoff between compute and coverage"
     ],
-    github: "",
+    github: "https://github.com/Pranadvaishnav/building-llm-from-scratch",
     demo: "",
     image: null
   },
@@ -140,6 +224,45 @@ export const projects = [
       "Dimensionality of latent space significantly affects what the model learns"
     ],
     github: "",
+    demo: "",
+    image: null
+  },
+
+  {
+    id: "devops-pipeline",
+    title: "DevOps CI/CD Automation Pipeline",
+    shortTitle: "DevOps Pipeline",
+    category: "DEVOPS",
+    categoryLabel: "DevOps / Infra",
+    featured: false,
+    status: "completed",
+    tagline: "Automated build, containerization, and AWS EC2 deployment with Jenkins & Docker.",
+    description:
+      "An end-to-end DevOps automation pipeline orchestrating source code integration, automated testing, container builds, and cloud deployment. Triggers build stages via Jenkinsfile on Git commits, creates containerized Docker images, and deploys services to AWS EC2.",
+    problem:
+      "Manual deployment workflows are error-prone, slow, and lack reproducible environments across staging and production.",
+    approach:
+      "Designed declarative Jenkinsfile pipelines to automate Maven compilation, Docker containerization, and deployment to AWS EC2 instances running Linux/Ubuntu.",
+    pipeline: [
+      { id: "git", label: "GIT COMMIT", description: "Developer pushes code changes to GitHub repository" },
+      { id: "jenkins", label: "JENKINS PIPELINE", description: "Webhook triggers automated multibranch build pipeline" },
+      { id: "maven", label: "MAVEN BUILD", description: "Automated compilation, dependency resolution, and test execution" },
+      { id: "docker", label: "DOCKER CONTAINER", description: "Dockerfile builds self-contained lightweight application image" },
+      { id: "aws", label: "AWS EC2 DEPLOY", description: "Automated deployment and port binding on cloud EC2 instance" }
+    ],
+    technologies: ["Docker", "Jenkins", "Git", "AWS EC2", "Maven", "Linux", "Java"],
+    highlights: [
+      "Declarative Jenkinsfile pipeline automation",
+      "Docker multi-stage containerization",
+      "AWS EC2 cloud deployment integration",
+      "Automated Maven build and dependency management"
+    ],
+    learnings: [
+      "Immutable container images eliminate environment discrepancy ('works on my machine')",
+      "Declarative CI/CD pipelines provide version-controlled, reproducible deployments",
+      "Automating deployment cycles dramatically shortens iteration speed"
+    ],
+    github: "https://github.com/Pranadvaishnav/DevOps-Project",
     demo: "",
     image: null
   },
@@ -217,7 +340,7 @@ export const projects = [
       "Middleware composition in Express keeps route handlers clean",
       "Separating admin and user flows requires careful route and UI design"
     ],
-    github: "",
+    github: "https://github.com/Pranadvaishnav/event-management",
     demo: "",
     image: null
   },
@@ -302,7 +425,7 @@ export const projects = [
       "Bandpass filter cutoffs require domain knowledge to choose meaningfully",
       "NumPy FFT operations are fast enough for single-trace analysis without GPUs"
     ],
-    github: "",
+    github: "https://github.com/Pranadvaishnav/Seismic-Data-Processing",
     demo: "",
     image: null
   }

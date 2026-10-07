@@ -22,7 +22,8 @@ export const research = [
       "CMS Data Analysis",
       "Signal vs. Background Classification"
     ],
-    note: "Research exploration — not a completed publication."
+    note: "Research exploration — not a completed publication.",
+    github: "https://github.com/Pranadvaishnav/Multivariate-techniques"
   },
 
   {
